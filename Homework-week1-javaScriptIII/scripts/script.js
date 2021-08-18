@@ -11,12 +11,14 @@ const logoTitle = '<a href="https://fontmeme.com/es/fuente-pokemon/"><img src="h
 divlogo.innerHTML = logoTitle;
 
 /* Declaración de botones de búsqueda */
-const divButtons = document.createElement("div");
-divButtons.classList.add("buttons");
+const divButtons = document.createElement("div"); //Creamos elemento "div" para botones
+divButtons.classList.add("button-one"); //Clase del elemento "div"
 divContainer.appendChild(divButtons);
 
-const buttonOne = '<input id="text-search" type="text" placeholder="Escribe tu pokemon aquí">';
+const buttonOne = '<input id="text-search" type="text" placeholder="Escribe tu pokemon aquí">'; //Primer botón de búsqueda
 divButtons.innerHTML = buttonOne;
+
+const buttonTwo = '<button id="search-button" type="button" class="btn btn-warning">Buscar</button>'; //Segundo botón
 
 
 
