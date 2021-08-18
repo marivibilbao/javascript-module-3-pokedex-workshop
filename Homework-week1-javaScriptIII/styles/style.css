@@ -7,7 +7,9 @@ body{
     margin-left: 25px;
     margin-right: 25px;
     margin-top: 25px;
-    background-color: rgb(226, 225, 225);;
+    background-color: rgb(201, 201, 201);
+    background-image: url("https://static.wikia.nocookie.net/pokemonleyendas/images/4/4c/Pokeball.png/revision/latest?cb=20141230003007&path-prefix=es");
+    background-repeat: no-repeat;
 }
 
 .buttons {
@@ -21,7 +23,6 @@ body{
     width: 60%;
     text-align: center;
     padding: 5px;
-    margin-top: 15px;
     margin-bottom: 15px;
 }
 
@@ -30,7 +31,6 @@ body{
     width: 10%;
     text-align: center;
     padding: 6px;
-    margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 10px;
 }
@@ -38,6 +38,7 @@ body{
 /* Tercer botón*/
 .button {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 #search-all-pokemon {
@@ -56,21 +57,25 @@ body{
 .card-title {
     font-size: 30px;
     text-align: center;
+    margin-bottom: 10px;;
 }
 
 .card-text {
     font-size: 13px;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 .card-text-2 {
     font-size: 13px;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 .card-text-3 {
     font-size: 13px;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 
