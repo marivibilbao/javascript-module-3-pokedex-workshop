@@ -10,11 +10,13 @@ body{
     background-color: rgb(226, 225, 225);;
 }
 
-/* Primer botón */
 .buttons {
     text-align: center;
+    /*display: flex;
+    column-count: 2;*/
 }
 
+/* Primer botón */
 #text-search {
     width: 60%;
     text-align: center;
@@ -23,13 +25,23 @@ body{
     margin-bottom: 15px;
 }
 
-
-/* Segundo botón*/
-
-
+/* Segundo botón */
+#search-button {
+    width: 10%;
+    text-align: center;
+    padding: 6px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
 
 /* Tercer botón*/
 .button {
+    text-align: center;
+}
+
+#search-all-pokemon {
+    width: 20%;
     text-align: center;
 }
 

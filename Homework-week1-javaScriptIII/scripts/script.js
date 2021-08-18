@@ -15,12 +15,17 @@ const divButtons = document.createElement("div"); //Creamos elemento "div" para 
 divButtons.classList.add("buttons"); //Clase del elemento "div"
 divContainer.appendChild(divButtons);
 
+
+//Primer y segundo botón:
+divButtons.innerHTML = '<input id="text-search" type="text" placeholder="Escribe tu pokemon aquí"></input><button id="search-button" type="button" class="btn btn-warning">Buscar</button>'
+
+/* No funcionó como lo estaba haciendo por separado
 //Primer botón área de búsqueda
 const buttonOne = '<input id="text-search" type="text" placeholder="Escribe tu pokemon aquí"></input>';
 divButtons.innerHTML = buttonOne;
-
 //Segúndo botón
-const buttonTwo = '<button id="search-button" type="button" class="btn btn-warning">Buscar</button>'; //Segundo botón
+const buttonTwo = '<button id="search-button" type="button" class="btn btn-warning">Buscar</button>';
+*/
 
 //Tercer botón
 const divButton = document.createElement("div"); //Creamos elemento "div" el tercer botón
@@ -29,6 +34,12 @@ divContainer.appendChild(divButton);
 
 const buttonThree ='<button id="search-all-pokemon" class="btn btn-primary" type="button">Ver más pokemones</button>';
 divButton.innerHTML = buttonThree;
+
+
+
+
+
+
 
 
 
