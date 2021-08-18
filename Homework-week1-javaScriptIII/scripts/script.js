@@ -35,11 +35,6 @@ divContainer.appendChild(divButton);
 const buttonThree ='<button id="search-all-pokemon" class="btn btn-primary" type="button">Ver más pokemones</button>';
 divButton.innerHTML = buttonThree;
 
-/* 6. Eventos de click*/
-function events() {
-
-};
-
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
@@ -58,9 +53,9 @@ function alertMessage () {
 };
 
 /* 3. Función para hacer request de pokemones a la API: */
-const getAllPokemonApi = async() => {
+const getPokemonApi = async(search) => {
     try{
-        const url = `https://pokeapi.co/api/v2/pokemon/`;
+        const url = `https://pokeapi.co/api/v2/pokemon/${search}`;
         const formatJson = await fetch(url); //Formato json
         const formatObject = await formatJson.json(); //Formato objeto
         renderPokemonCard(formatObject); //Llamamos a la función para que muestre las tarjetas del pokemon
@@ -69,8 +64,13 @@ const getAllPokemonApi = async() => {
     };
 };
 
-
-
+/* 6. Eventos de click*/
+function events() {
+    const searchButton = document.querySelector("#search-button")
+    searchButton.addEventListener("click", () => {
+        
+    });
+};
 
 
 
