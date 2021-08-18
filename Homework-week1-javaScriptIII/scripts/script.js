@@ -15,7 +15,6 @@ const divButtons = document.createElement("div"); //Creamos elemento "div" para 
 divButtons.classList.add("buttons"); //Clase del elemento "div"
 divContainer.appendChild(divButtons);
 
-
 //Primer y segundo botón:
 divButtons.innerHTML = '<input id="text-search" type="text" placeholder="Escribe tu pokemon aquí"></input><button id="search-button" type="button" class="btn btn-warning">Buscar</button>'
 
@@ -38,19 +37,34 @@ divButton.innerHTML = buttonThree;
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
-    const contentDivCard = '<div class="card mb-3" style="max-width: 540px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text"></p></div></div></div></div>';
+    const contentDivCard = '<div class="card mb-3" style="max-width: 540px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
     divCardElement.innerHTML = contentDivCard;
     divContainer.appendChild(divCardElement);
     //Información que quiero que aparezca en el contenido de la tarjeta:
-    document.querySelector(".card-title").innerHTML = pokemon.name;
-    document.querySelector(".img-fluid").src = pokemon.sprites;
-    document.querySelector(".card-text").innerHTML = pokemon.skills
+    const namePokemn = document.querySelector(".card-title").innerHTML = pokemon.name;
+    const imgPokemon = document.querySelector(".img-fluid").src = pokemon.sprites.back_default; //El dato back_default se debe buscar en la API
+    const weightPokemon = document.querySelector(".card-text").innerHTML = `Weight: ${pokemon.weight}`;
+    const heightPokemon = document.querySelector(".card-text-2").innerHTML = `Height: ${pokemon.height}`;
+    const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `Base experience: ${pokemon.base_experience}`;
+    //const typePokemon = document.querySelector("card-text-4").textContent = `Type: ${pokemon.types.type}`;
 };
 
 /* 4. Función para mensaje de alerta */
 function alertMessage () {
     window.alert("No existe ese Pokemon, intentalo de nuevo");
 };
+
+/* 7. Función para buscar la información del pokemón */
+function searchPokemonApi() {
+    const textSearchContentButton = document.querySelector("#text-search").value;
+    getPokemonApi(textSearchContentButton);
+};
+
+/* 6. Evento de click */
+const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
+searchButton.addEventListener("click", () => {
+    searchPokemonApi();
+});
 
 /* 3. Función para hacer request de pokemones a la API: */
 const getPokemonApi = async(search) => {
@@ -64,13 +78,11 @@ const getPokemonApi = async(search) => {
     };
 };
 
-/* 6. Eventos de click*/
-function events() {
-    const searchButton = document.querySelector("#search-button")
-    searchButton.addEventListener("click", () => {
-        
-    });
-};
-
-
-
+/*Debo revisar
+textSearchContentButton.addEventListener("keydown", function(event){
+    if (event.key === "Enter") {
+        //event.preventDefault();
+        searchPokemonApi();
+    };
+});
+*/

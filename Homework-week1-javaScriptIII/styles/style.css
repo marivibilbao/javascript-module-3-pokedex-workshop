@@ -45,6 +45,33 @@ body{
     text-align: center;
 }
 
+/* Card - Tarjeta */
+.img-fluid {
+    width: 200px; height: 200px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-title {
+    font-size: 30px;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 13px;
+    text-align: center;
+}
+
+.card-text-2 {
+    font-size: 13px;
+    text-align: center;
+}
+
+.card-text-3 {
+    font-size: 13px;
+    text-align: center;
+}
 
 
 
