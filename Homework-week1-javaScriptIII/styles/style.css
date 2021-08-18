@@ -10,8 +10,8 @@ body{
     background-color: rgb(226, 225, 225);;
 }
 
-/* Primer botón*/
-.button-one {
+/* Primer botón */
+.buttons {
     text-align: center;
 }
 
@@ -23,5 +23,20 @@ body{
     margin-bottom: 15px;
 }
 
+
 /* Segundo botón*/
+
+
+
+/* Tercer botón*/
+.button {
+    text-align: center;
+}
+
+
+
+
+
+
+
 
