@@ -10,6 +10,12 @@ divContainer.appendChild(divlogo);
 const logoTitle = '<a href="https://fontmeme.com/es/fuente-pokemon/"><img src="https://fontmeme.com/permalink/210817/490e5659d2a7956931760d8353390978.png" alt="fuente-pokemon" border="0"></a>';
 divlogo.innerHTML = logoTitle;
 
+/* 9. Texto después del logo: */
+const pElement = document.createElement("p");
+pElement.classList.add("text-first");
+divContainer.appendChild(pElement);
+pElement.innerHTML = "Los Pokémon son las criaturas que habitan el mundo de los juegos de Pokémon. Pueden ser atrapados usando Pokebolas y son entrenados luchando con otros Pokemones. Cada Pokemon pertenece a una especie específica, para saber más datos sobre ellos puede ingresar el nombre o un número y te aparecerá una ficha con datos";
+
 /* 2. Declaración de botones de búsqueda */
 const divButtons = document.createElement("div"); //Creamos elemento "div" para botones
 divButtons.classList.add("buttons"); //Clase del elemento "div"
@@ -37,6 +43,7 @@ divButton.innerHTML = buttonThree;
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
+    divCardElement.classList.add("div-card");
     const contentDivCard = '<div class="card border-dark mb-3" style="max-width: 740px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
     //const contentDivCard = '<div class="card" style="width: 18rem;"><img src="" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><p class="card-text-2"></p><p class="card-text-3"></p></div></div>';
     divCardElement.innerHTML = contentDivCard;
