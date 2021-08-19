@@ -37,7 +37,7 @@ divButton.innerHTML = buttonThree;
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
-    const contentDivCard = '<div class="card mb-3" style="max-width: 640px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
+    const contentDivCard = '<div class="card border-dark mb-3" style="max-width: 640px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
     divCardElement.innerHTML = contentDivCard;
     divContainer.appendChild(divCardElement);
     //Información que quiero que aparezca en el contenido de la tarjeta:
@@ -64,6 +64,14 @@ function searchPokemonApi() {
 const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
 searchButton.addEventListener("click", () => {
     searchPokemonApi();
+});
+
+/* 8. Evento de botón enter */
+document.querySelector("#text-search").addEventListener("keydown", function(event){
+    if (event.key === "Enter") {
+        event.preventDefault();
+        searchPokemonApi();
+    };
 });
 
 /*Debo revisar
