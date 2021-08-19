@@ -51,10 +51,11 @@ function renderPokemonCard(pokemon) {
     //Información que quiero que aparezca en el contenido de la tarjeta:
     const namePokemn = document.querySelector(".card-title").innerHTML = pokemon.name.toUpperCase(0);
     const imgPokemon = document.querySelector(".img-fluid ").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
-    const weightPokemon = document.querySelector(".card-text").innerHTML = `Weight: ${pokemon.weight}`;
-    const heightPokemon = document.querySelector(".card-text-2").innerHTML = `Height: ${pokemon.height}`;
-    const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `Base experience: ${pokemon.base_experience}`;
-    //const typePokemon = document.querySelector("card-text-4").textContent = `Type: ${type.name}`;
+    const weightPokemon = document.querySelector(".card-text").innerHTML = `<b>Peso:</b> ${pokemon.weight} hectograms`;
+    const heightPokemon = document.querySelector(".card-text-2").innerHTML = `<b>Altura:</b> ${pokemon.height} decimetres`;
+    const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `<b>Experiencia al derrotar éste Pokemon:</b> ${pokemon.base_experience}`;
+    //const abilitiesPokemon = document.querySelector("card-text-4").innerHTML =`Puntos de esfuerzo: ${pokemon..abilities}`;
+    //const typePokemon = document.querySelector("card-text-5").textContent = `Type: ${pokemon}`;
 };
 
 /* 4. Función para mensaje de alerta */
@@ -82,6 +83,14 @@ document.querySelector("#text-search").addEventListener("keydown", function(even
     };
 }); 
 
+/* 11. Función para visualizar varios pokemones -----PENDIENTE POR TERMINAR
+function renderAllPokemonCard (){
+    array.forEach(element => {
+        
+    });
+};
+*/
+
 /* 3. Función para hacer request de pokemones a la API: */
 const getPokemonApi = async(search) => {
     try{
@@ -94,3 +103,10 @@ const getPokemonApi = async(search) => {
     };
 };
 
+/* 10. Función para hacer request de pokemones a la API (visualizar varios) */
+async function getAllPokemonApi() {
+    const url = `https://pokeapi.co/api/v2/pokemon/?limit=20`;
+    const formatJson = await fetch(url);
+    const formatObject = await formatJson.json();
+    renderAllPokemonCard();
+};
