@@ -37,12 +37,13 @@ divButton.innerHTML = buttonThree;
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
-    const contentDivCard = '<div class="card border-dark mb-3" style="max-width: 640px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
+    const contentDivCard = '<div class="card border-dark mb-3" style="max-width: 740px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
+    //const contentDivCard = '<div class="card" style="width: 18rem;"><img src="" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><p class="card-text-2"></p><p class="card-text-3"></p></div></div>';
     divCardElement.innerHTML = contentDivCard;
     divContainer.appendChild(divCardElement);
     //Información que quiero que aparezca en el contenido de la tarjeta:
     const namePokemn = document.querySelector(".card-title").innerHTML = pokemon.name.toUpperCase(0);
-    const imgPokemon = document.querySelector(".img-fluid").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
+    const imgPokemon = document.querySelector(".img-fluid ").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
     const weightPokemon = document.querySelector(".card-text").innerHTML = `Weight: ${pokemon.weight}`;
     const heightPokemon = document.querySelector(".card-text-2").innerHTML = `Height: ${pokemon.height}`;
     const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `Base experience: ${pokemon.base_experience}`;
@@ -72,16 +73,7 @@ document.querySelector("#text-search").addEventListener("keydown", function(even
         event.preventDefault();
         searchPokemonApi();
     };
-});
-
-/*Debo revisar
-textSearchContentButton.addEventListener("keydown", function(event){
-    if (event.key === "Enter") {
-        //event.preventDefault();
-        searchPokemonApi();
-    };
-});
-*/
+}); 
 
 /* 3. Función para hacer request de pokemones a la API: */
 const getPokemonApi = async(search) => {

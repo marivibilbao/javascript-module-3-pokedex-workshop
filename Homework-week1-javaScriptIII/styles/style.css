@@ -58,8 +58,9 @@ body{
     margin-right: auto;
 }
 
-.card  {
-    text-align: center;
+div .card  {
+    display: flex;
+    text-align: center;  
 }
 
 .card-title {
