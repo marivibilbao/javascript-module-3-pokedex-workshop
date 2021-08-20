@@ -36,7 +36,7 @@ divButton.innerHTML = buttonThree;
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
     divCardElement.classList.add("div-card");
-    const contentDivCard = '<div class="card border-dark mb-3" style="max-width: 740px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
+    const contentDivCard = '<div class="card border-dark mb-3" id= "card-pokemon" style="max-width: 740px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
     divCardElement.innerHTML = contentDivCard;
     divContainer.appendChild(divCardElement);
 
@@ -52,7 +52,7 @@ function renderPokemonCard(pokemon) {
 /* 4. Función para mensaje de alerta */
 function alertMessage () {
     window.alert("No existe ese Pokemon, intentalo de nuevo");
-};
+}
 
 /* 7. Función para buscar la información del pokemón */
 function searchPokemonApi() {
@@ -63,12 +63,12 @@ function searchPokemonApi() {
 /* 12. Función para visualizar varios pokemones */
 /* ERROR: Cannot set property 'onclick' of null */
 const renderAllPokemonList = (formatJsonAll) => {
-    console.log(formatJsonAll);
+    //console.log(formatJsonAll);
     formatJsonAll.results.forEach((pokemon, index) => {
-        const ulElement = document.createElement('ul');
+        let ulElement = document.createElement('ul');
         ulElement.classList.add("ul-pokemon");
         
-        const listElement = document.createElement('li');
+        let listElement = document.createElement('li');
         listElement.classList.add(`pokemon-${index+1}`, "list-group-item");
         ulElement.appendChild(listElement);
 
@@ -80,11 +80,9 @@ const renderAllPokemonList = (formatJsonAll) => {
 };
 
 /* 13. Función para limpiar el contenido después de las búsqiedas*/
-/*function clearContent() {
-    document.querySelector(".div-card").innerHTML = "";
+function clearContent() {
+    //document.querySelector(".div-card").innerHTML = "";
 };
-*/
-
 
 /* 3. Función para hacer request de pokemones a la API: */
 const getPokemonApi = async(pokemon) => {
@@ -92,17 +90,17 @@ const getPokemonApi = async(pokemon) => {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
         const formatJson = await fetch(url); //Formato json
         const formatObject = await formatJson.json(); //Formato objeto
+        //clearContent();
         renderPokemonCard(formatObject); //Llamamos a la función para que muestre las tarjetas del pokemon
-        //clearElement();
     }catch (error){
         alertMessage(); //Si no existe que muestre ese mensaje de error
     };
 };
 
 /* 10. Función para hacer request de pokemones a la API (visualizar varios) */
-async function getAllPokemonApi() {
+const getAllPokemonApi = async () => {
     try{
-        const url = `https://pokeapi.co/api/v2/pokemon/?limit=20"`; //Límite de 20 pokemones
+        const url = `https://pokeapi.co/api/v2/pokemon/`;
         const formatJsonAll = await fetch(url);
         const formatObjectAll = await formatJsonAll.json();
         renderAllPokemonList(formatObjectAll);
@@ -111,22 +109,23 @@ async function getAllPokemonApi() {
     };
 };
 
-/* 6. Evento de click */
-const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
-searchButton.addEventListener("click", () => {
-    searchPokemonApi();
-});
-
-/* 8. Evento de botón enter */
-document.querySelector("#text-search").addEventListener("keydown", function(event){
-    if (event.key === "Enter") {
-        event.preventDefault();
+window.onload = () => {
+    /* 6. Evento de click */
+    const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
+    
+    searchButton.addEventListener("click", () => {
         searchPokemonApi();
-    };
-}); 
-
-/* 11. Evento de click para botón azúl de "ver varios pokemones"
-** No funciona del todo bien la función*/
-document.querySelector("#search-all-pokemon").addEventListener("click", () => {
-    getAllPokemonApi();
-});
+    });
+    /* 8. Evento de botón enter */
+    document.querySelector("#text-search").addEventListener("keydown", function(event){
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchPokemonApi();
+        };
+    }); 
+    /* 11. Evento de click para botón azúl de "ver varios pokemones"
+    ** No funciona del todo bien la función*/
+    document.querySelector("#search-all-pokemon").addEventListener("click", () => {
+        getAllPokemonApi();
+    });
+};
