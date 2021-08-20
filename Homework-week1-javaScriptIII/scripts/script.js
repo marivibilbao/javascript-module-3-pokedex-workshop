@@ -46,6 +46,7 @@ function renderPokemonCard(pokemon) {
     const weightPokemon = document.querySelector(".card-text").innerHTML = `<b>Peso:</b> ${pokemon.weight} hectograms`;
     const heightPokemon = document.querySelector(".card-text-2").innerHTML = `<b>Altura:</b> ${pokemon.height} decimetres`;
     const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `<b>Experiencia al derrotar éste Pokemon:</b> ${pokemon.base_experience}`;
+    const {types} = pokemon; document.querySelector(".card-text-4").innerHTML = `<b>Tipo:</b> ${types[0].type.name}`;
     //const typePokemon = document.querySelector(".card-text-4").innerHTML =`Tipo: ${types[0].type.name}`;
 };
 
