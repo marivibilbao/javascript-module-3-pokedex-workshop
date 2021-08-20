@@ -125,8 +125,7 @@ window.onload = () => {
             searchPokemonApi();
         };
     }); 
-    /* 11. Evento de click para botón azúl de "ver varios pokemones"
-    ** No funciona del todo bien la función*/
+    /* 11. Evento de click para botón azúl de "ver varios pokemones" */
     document.querySelector("#search-all-pokemon").addEventListener("click", () => {
         getAllPokemonApi();
     });
