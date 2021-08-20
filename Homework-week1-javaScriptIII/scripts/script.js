@@ -40,6 +40,11 @@ divContainer.appendChild(divButton);
 const buttonThree ='<button id="search-all-pokemon" class="btn btn-primary" type="button">Ver más pokemones</button>';
 divButton.innerHTML = buttonThree;
 
+/* Función para limpiar el contenido después de las búsqiedas*/
+/*function clearContent() {
+    divCardElement.innerHTML="";
+};*/
+
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
@@ -54,8 +59,7 @@ function renderPokemonCard(pokemon) {
     const weightPokemon = document.querySelector(".card-text").innerHTML = `<b>Peso:</b> ${pokemon.weight} hectograms`;
     const heightPokemon = document.querySelector(".card-text-2").innerHTML = `<b>Altura:</b> ${pokemon.height} decimetres`;
     const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `<b>Experiencia al derrotar éste Pokemon:</b> ${pokemon.base_experience}`;
-    //const abilitiesPokemon = document.querySelector("card-text-4").innerHTML =`Puntos de esfuerzo: ${pokemon..abilities}`;
-    //const typePokemon = document.querySelector("card-text-5").textContent = `Type: ${pokemon}`;
+    //const typePokemon = document.querySelector(".card-text-4").innerHTML =`Tipo: ${types[0].type.name}`;
 };
 
 /* 4. Función para mensaje de alerta */
@@ -67,6 +71,47 @@ function alertMessage () {
 function searchPokemonApi() {
     const textSearchContentButton = document.querySelector("#text-search").value;
     getPokemonApi(textSearchContentButton);
+};
+
+/* 12. Función para visualizar varios pokemones */ /* ERROR: Cannot set property 'onclick' of null */
+const renderAllPokemonList = (formatJsonAll) => {
+    formatJsonAll.results.forEach((pokemon, index) => {
+        const ulElement = document.createElement('ul');
+        ulElement.classList.add("ul-pokemon");
+        
+        const listElement = document.createElement('li');
+        listElement.classList.add(`pokemon-${index+1}`, "list-group-item");
+        ulElement.appendChild(listElement);
+
+        listElement.innerHTML= `<button class="btn btn-link">${pokemon.name}</button>`;
+        document.querySelector(`.pokemon-${index + 1}`).onclick = () => {
+            getPokemonApi(index+1);
+        };
+    });
+};
+
+/* 3. Función para hacer request de pokemones a la API: */
+const getPokemonApi = async(pokemon) => {
+    try{
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+        const formatJson = await fetch(url); //Formato json
+        const formatObject = await formatJson.json(); //Formato objeto
+        renderPokemonCard(formatObject); //Llamamos a la función para que muestre las tarjetas del pokemon
+    }catch (error){
+        alertMessage(); //Si no existe que muestre ese mensaje de error
+    };
+};
+
+/* 10. Función para hacer request de pokemones a la API (visualizar varios) */
+async function getAllPokemonApi(pokemon) {
+    try{
+        const url = `https://pokeapi.co/api/v2/pokemon/`;
+        let formatJsonAll = await fetch(url);
+        let formatObjectAll = await formatJsonAll.json();
+        renderAllPokemonList(formatObjectAll);
+    }catch(error){
+        console.log(error);
+    };
 };
 
 /* 6. Evento de click */
@@ -83,30 +128,8 @@ document.querySelector("#text-search").addEventListener("keydown", function(even
     };
 }); 
 
-/* 11. Función para visualizar varios pokemones -----PENDIENTE POR TERMINAR
-function renderAllPokemonCard (){
-    array.forEach(element => {
-        
-    });
-};
-*/
-
-/* 3. Función para hacer request de pokemones a la API: */
-const getPokemonApi = async(search) => {
-    try{
-        const url = `https://pokeapi.co/api/v2/pokemon/${search}`;
-        const formatJson = await fetch(url); //Formato json
-        const formatObject = await formatJson.json(); //Formato objeto
-        renderPokemonCard(formatObject); //Llamamos a la función para que muestre las tarjetas del pokemon
-    }catch (error){
-        alertMessage(); //Si no existe que muestre ese mensaje de error
-    };
-};
-
-/* 10. Función para hacer request de pokemones a la API (visualizar varios) */
-async function getAllPokemonApi() {
-    const url = `https://pokeapi.co/api/v2/pokemon/?limit=20`;
-    const formatJson = await fetch(url);
-    const formatObject = await formatJson.json();
-    renderAllPokemonCard();
-};
+/* 11. Evento de click para botón azúl de "ver varios pokemones"
+** Todavía no funciona porque no tengo la función*/
+document.querySelector("#search-all-pokemon").addEventListener("click", () => {
+    getAllPokemonApi();
+});
