@@ -37,17 +37,16 @@ function renderPokemonCard(pokemon) {
     const divCardElement = document.createElement("div"); //Creamos un elemento "div"
     divCardElement.classList.add("div-card");
     const contentDivCard = '<div class="card border-dark mb-3" style="max-width: 740px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
-    //const contentDivCard = '<div class="card" style="width: 18rem;"><img src="" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title"></h5><p class="card-text"></p><p class="card-text-2"></p><p class="card-text-3"></p></div></div>';
     divCardElement.innerHTML = contentDivCard;
     divContainer.appendChild(divCardElement);
+
     //Información que quiero que aparezca en el contenido de la tarjeta:
     const namePokemn = document.querySelector(".card-title").innerHTML = pokemon.name.toUpperCase(0);
-    const imgPokemon = document.querySelector(".img-fluid ").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
+    const imgPokemon = document.querySelector(".img-fluid").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
     const weightPokemon = document.querySelector(".card-text").innerHTML = `<b>Peso:</b> ${pokemon.weight} hectograms`;
     const heightPokemon = document.querySelector(".card-text-2").innerHTML = `<b>Altura:</b> ${pokemon.height} decimetres`;
     const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `<b>Experiencia al derrotar éste Pokemon:</b> ${pokemon.base_experience}`;
     const {types} = pokemon; document.querySelector(".card-text-4").innerHTML = `<b>Tipo:</b> ${types[0].type.name}`;
-    //const typePokemon = document.querySelector(".card-text-4").innerHTML =`Tipo: ${types[0].type.name}`;
 };
 
 /* 4. Función para mensaje de alerta */
@@ -61,9 +60,10 @@ function searchPokemonApi() {
     getPokemonApi(textSearchContentButton);
 };
 
-/* 12. Función para visualizar varios pokemones */ /* ERROR: Cannot set property 'onclick' of null */
-/*
+/* 12. Función para visualizar varios pokemones */
+/* ERROR: Cannot set property 'onclick' of null */
 const renderAllPokemonList = (formatJsonAll) => {
+    console.log(formatJsonAll);
     formatJsonAll.results.forEach((pokemon, index) => {
         const ulElement = document.createElement('ul');
         ulElement.classList.add("ul-pokemon");
@@ -78,13 +78,13 @@ const renderAllPokemonList = (formatJsonAll) => {
         };
     });
 };
-*/
 
 /* 13. Función para limpiar el contenido después de las búsqiedas*/
 /*function clearContent() {
-    divCardElement.innerHTML = "";
+    document.querySelector(".div-card").innerHTML = "";
 };
 */
+
 
 /* 3. Función para hacer request de pokemones a la API: */
 const getPokemonApi = async(pokemon) => {
@@ -100,18 +100,16 @@ const getPokemonApi = async(pokemon) => {
 };
 
 /* 10. Función para hacer request de pokemones a la API (visualizar varios) */
-/* 
-async function getAllPokemonApi(pokemon) {
+async function getAllPokemonApi() {
     try{
-        const url = `https://pokeapi.co/api/v2/pokemon/`;
-        let formatJsonAll = await fetch(url);
-        let formatObjectAll = await formatJsonAll.json();
+        const url = `https://pokeapi.co/api/v2/pokemon/?limit=20"`; //Límite de 20 pokemones
+        const formatJsonAll = await fetch(url);
+        const formatObjectAll = await formatJsonAll.json();
         renderAllPokemonList(formatObjectAll);
     }catch(error){
         console.log(error);
     };
 };
-*/
 
 /* 6. Evento de click */
 const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
@@ -129,8 +127,6 @@ document.querySelector("#text-search").addEventListener("keydown", function(even
 
 /* 11. Evento de click para botón azúl de "ver varios pokemones"
 ** No funciona del todo bien la función*/
-/*
 document.querySelector("#search-all-pokemon").addEventListener("click", () => {
     getAllPokemonApi();
 });
-*/
