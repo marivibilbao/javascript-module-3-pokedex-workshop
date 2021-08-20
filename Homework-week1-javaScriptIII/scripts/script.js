@@ -41,11 +41,11 @@ function renderPokemonCard(pokemon) {
     divContainer.appendChild(divCardElement);
 
     //Información que quiero que aparezca en el contenido de la tarjeta:
-    const namePokemn = document.querySelector(".card-title").innerHTML = pokemon.name.toUpperCase(0);
-    const imgPokemon = document.querySelector(".img-fluid").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
-    const weightPokemon = document.querySelector(".card-text").innerHTML = `<b>Peso:</b> ${pokemon.weight} hectograms`;
-    const heightPokemon = document.querySelector(".card-text-2").innerHTML = `<b>Altura:</b> ${pokemon.height} decimetres`;
-    const experiencePokemon = document.querySelector(".card-text-3").innerHTML = `<b>Experiencia al derrotar éste Pokemon:</b> ${pokemon.base_experience}`;
+    document.querySelector(".card-title").innerHTML = pokemon.name.toUpperCase(0);
+    document.querySelector(".img-fluid").src = pokemon.sprites.front_default; //El dato front_default se debe buscar en la API
+    document.querySelector(".card-text").innerHTML = `<b>Peso:</b> ${pokemon.weight} hectograms`;
+    document.querySelector(".card-text-2").innerHTML = `<b>Altura:</b> ${pokemon.height} decimetres`;
+    document.querySelector(".card-text-3").innerHTML = `<b>Experiencia al derrotar éste Pokemon:</b> ${pokemon.base_experience}`;
     const {types} = pokemon; document.querySelector(".card-text-4").innerHTML = `<b>Tipo:</b> ${types[0].type.name}`;
 };
 
@@ -65,13 +65,15 @@ function searchPokemonApi() {
 const renderAllPokemonList = (formatJsonAll) => {
     //console.log(formatJsonAll);
     formatJsonAll.results.forEach((pokemon, index) => {
+        /* No funciona y "ul" lo pase al HTML
         let ulElement = document.createElement('ul');
         ulElement.classList.add("ul-pokemon");
+        */
         
         let listElement = document.createElement('li');
         listElement.classList.add(`pokemon-${index+1}`, "list-group-item");
-        ulElement.appendChild(listElement);
-
+        
+        document.querySelector(".list-group").appendChild(listElement);
         listElement.innerHTML= `<button class="btn btn-link">${pokemon.name}</button>`;
         document.querySelector(`.pokemon-${index + 1}`).onclick = () => {
             getPokemonApi(index + 1);
