@@ -111,22 +111,22 @@ const getAllPokemonApi = async () => {
     };
 };
 
-window.onload = () => {
-    /* 6. Evento de click */
-    const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
-    
-    searchButton.addEventListener("click", () => {
+/* 6. Evento de click */
+const searchButton = document.querySelector("#search-button"); //Declaramos el botón de buscar
+searchButton.addEventListener("click", () => {
+    searchPokemonApi();
+});
+
+/* 8. Evento de botón enter */
+document.querySelector("#text-search").addEventListener("keydown", function(event){
+    if (event.key === "Enter") {
+        event.preventDefault();
         searchPokemonApi();
-    });
-    /* 8. Evento de botón enter */
-    document.querySelector("#text-search").addEventListener("keydown", function(event){
-        if (event.key === "Enter") {
-            event.preventDefault();
-            searchPokemonApi();
-        };
-    }); 
-    /* 11. Evento de click para botón azúl de "ver varios pokemones" */
-    document.querySelector("#search-all-pokemon").addEventListener("click", () => {
-        getAllPokemonApi();
-    });
-};
+    };
+}); 
+
+/* 11. Evento de click para botón azúl de "ver varios pokemones" */
+document.querySelector("#search-all-pokemon").addEventListener("click", () => {
+    getAllPokemonApi();
+});
+
