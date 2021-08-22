@@ -1,6 +1,7 @@
 /* 1. Declaración de la parte superior de la web - Título */
 const root = document.querySelector("#root"); //Declaramos al elemento que se encuentra en el HTML
-const divContainer = document.createElement("container"); //Creamos elemento container
+const divContainer = document.createElement("div"); //Creamos elemento div container
+divContainer.classList.add("container");
 root.appendChild(divContainer); //Container hijo de div root
 
 const divlogo = document.createElement("div"); //Creamos otro elemento div
