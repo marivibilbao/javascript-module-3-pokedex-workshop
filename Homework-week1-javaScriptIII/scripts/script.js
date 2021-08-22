@@ -40,6 +40,7 @@ divContainer.appendChild(divCardElement);
 
 /* 5. Función para mostrar la tarjeta de un pokemon */
 function renderPokemonCard(pokemon) {
+    /* No funciona ya que se debe crear fuera de la función */
     //const divCardElement = document.createElement("div"); //Creamos un elemento "div"
     //divCardElement.classList.add("div-card");
     const contentDivCard = '<div class="card border-dark mb-3" id= "card-pokemon" style="max-width: 740px;"><div class="row g-0"><div class="col-md-4"><img src="" class="img-fluid rounded-start" alt=""></div><div class="col-md-8"><div class="card-body"><h5 class="card-title"></h5><p class="card-text"><p class="card-text-2"><p class="card-text-3"><p class="card-text-4"></p></p></p></p></div></div></div></div>';
